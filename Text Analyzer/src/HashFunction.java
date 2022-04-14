@@ -24,8 +24,17 @@ public class HashFunction {
 		//Global for start of text analyzer and end
 		private static final Integer start = 78;
 		private static final Integer end = 244;
+		
+		public static int main(String[] args)throws IOException{
+			Scanner reader = new Scanner (System.in);
+			int start = reader.nextInt();
+			int end = reader.nextInt();
+			
+			int n = top20(start,end);
+			return n;
+		}
 
-		public static void main(String args[]) throws IOException {
+		public static int top20(int start,int end) throws IOException {
 			   
 			//Create try catch for fileNotFound
 			
@@ -46,6 +55,7 @@ public class HashFunction {
 			   //iterator for what line is being read at the moment
 			   int currentLine = 0;
 			   String lineInfo;
+			   int counter = 0;
 			   
 			   //checking if the line isnt the end of the html
 			   while((lineInfo = in.readLine()) != null) {
@@ -101,15 +111,16 @@ public class HashFunction {
 			   //Create a loop for the top 20 values
 			   for(Entry aList : listOfEntry.subList(listOfEntry.size()-20, listOfEntry.size())) {
 				   System.out.println(aList.getValue()+ " " + aList.getKey());
+				   counter++;
 			   }
 			   //System.out.println(wordIt);
-			   
-			   
-			   in.close();
+			   return counter;
 			   
 			}catch (FileNotFoundException e) {
 				e.printStackTrace();
-			}	   
+				return 1;
+			}
+			   
 		}
 }
 
